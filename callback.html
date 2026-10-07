@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eter Publisher - Conexion con TikTok</title>
+<style>body{font-family:system-ui,sans-serif;max-width:520px;margin:15vh auto;padding:0 20px;text-align:center;color:#222}small{color:#666}</style>
+</head>
+<body>
+<h2>Conectando con Eter Publisher...</h2>
+<p id="msg">Un momento, te estamos regresando a tu aplicacion.</p>
+<small>Si no pasa nada, asegurate de que Eter Publisher este abierto en tu computadora.</small>
+<script>
+  // Esta pagina solo reenvia el resultado de la autorizacion de TikTok
+  // a la aplicacion local Eter Publisher (127.0.0.1:8000). No guarda nada.
+  var q = window.location.search || "";
+  window.location.replace("http://127.0.0.1:8000/api/tiktok/callback" + q);
+</script>
+</body>
+</html>
