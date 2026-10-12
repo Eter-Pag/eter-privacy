@@ -9,12 +9,19 @@
 <body>
 <h2>Conectando con Eter Publisher...</h2>
 <p id="msg">Un momento, te estamos regresando a tu aplicacion.</p>
-<small>Si no pasa nada, asegurate de que Eter Publisher este abierto en tu computadora.</small>
+<small>Si no pasa nada, vuelve a Eter Publisher e intenta conectar de nuevo.</small>
 <script>
-  // Esta pagina solo reenvia el resultado de la autorizacion de TikTok
-  // a la aplicacion local Eter Publisher (127.0.0.1:8000). No guarda nada.
+  // Esta pagina solo reenvia el resultado de la autorizacion de TikTok a la app.
+  // El prefijo del parametro "state" indica el destino:
+  //   "local." -> la app en tu PC (127.0.0.1:8000)
+  //   "cloud." (o cualquier otro) -> la app en Railway
+  // No guarda nada.
+  var CLOUD = "https://dedika-app.up.railway.app";
+  var LOCAL = "http://127.0.0.1:8000";
   var q = window.location.search || "";
-  window.location.replace("http://127.0.0.1:8000/api/tiktok/callback" + q);
+  var state = new URLSearchParams(q).get("state") || "";
+  var base = state.indexOf("local.") === 0 ? LOCAL : CLOUD;
+  window.location.replace(base + "/api/tiktok/callback" + q);
 </script>
 </body>
 </html>
